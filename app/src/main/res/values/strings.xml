@@ -1,0 +1,11 @@
+<resources>
+    <!--    Dashboard Screen-->
+    <string name="screen_dashboard_display_text_tb_title">Profiles</string>
+    <string name="screen_dashboard_display_text_score">Score :</string>
+    <string name="screen_dashboard_display_text_error">Something went wrong</string>
+    <string name="screen_dashboard_display_text_error_description">An alien is probably blocking your signal</string>
+    <string name="screen_dashboard_button_text_Retry">Retry</string>
+
+    <string name="common_hint_search">Search</string>
+    <string name="common_text_cancel">Cancel</string>
+</resources>

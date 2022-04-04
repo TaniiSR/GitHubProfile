@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="taPurple200">#FFBB86FC</color>
+    <color name="taTeal200">#FF03DAC5</color>
+    <color name="taTeal700">#FF018786</color>
+    <color name="taBlack">#FF000000</color>
+    <color name="taWhite">#FFFFFFFF</color>
+    <!--    color primary-->
+    <color name="taBlueWithAHintOfPurple">#5E35B1</color>
+    <!--    color primary 2-->
+    <color name="taBlueWithAHintOfPurpleTwo">#5A2FB1</color>
+    <!--    color primary dark-->
+    <color name="taDarkSlateBlue">#272262</color>
+    <!--    color primary light-->
+    <color name="taBrightBlue">#007aff</color>
+    <!--    color Grey Dark-->
+    <color name="taBlueGrey">#9391b1</color>
+
+    <color name="taGrey">#636161</color>
+    <color name="taGreyLight">#F6F8FE</color>
+    <color name="taAvailable">#D1C4E9</color>
+    <color name="taBlueWithAHintOfPurpleFaded">#805E35B1</color>
+</resources>
