@@ -31,7 +31,7 @@ class DashboardVMTest : BaseTestCase() {
     }
 
     @Test
-    fun `get trendy repo list success`() {
+    fun `get profile repo list success`() {
         //1- Mock calls
         val query = ""
         runTest {
@@ -56,7 +56,7 @@ class DashboardVMTest : BaseTestCase() {
     }
 
     @Test
-    fun `get trendy repo list with local data success`() {
+    fun `get profile list with local data success`() {
         //1- Mock calls
         val query = ""
         runTest {
@@ -81,7 +81,7 @@ class DashboardVMTest : BaseTestCase() {
     }
 
     @Test
-    fun `get trendy repo list error`() {
+    fun `get profile list error`() {
         //1- Mock calls
         val query = ""
         runTest {
@@ -102,7 +102,7 @@ class DashboardVMTest : BaseTestCase() {
     }
 
     @Test
-    fun `get trendy repo list with local data error`() {
+    fun `get profile list with local data error`() {
         //1- Mock calls
         val query = ""
         runTest {

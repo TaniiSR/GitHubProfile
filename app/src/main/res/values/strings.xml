@@ -8,4 +8,8 @@
 
     <string name="common_hint_search">Search</string>
     <string name="common_text_cancel">Cancel</string>
+
+    <!--    Detail Screen-->
+    <string name="screen_detail_display_text_tb_title">User Detail</string>
+
 </resources>

@@ -2,6 +2,7 @@ package com.task.githubprofile.domain
 
 import com.task.githubprofile.base.BaseTestCase
 import com.task.githubprofile.data.dtos.responsedtos.GitUser
+import com.task.githubprofile.data.dtos.responsedtos.User
 import com.task.githubprofile.data.local.localservice.GitRepoDbService
 import com.task.githubprofile.data.local.localservice.GitRepositoryLocal
 import com.task.githubprofile.data.remote.baseclient.ApiResponse
@@ -31,7 +32,7 @@ class DataRepositoryTest : BaseTestCase() {
     }
 
     @Test
-    fun `get trendy repo list success`() {
+    fun `get profile list success`() {
         //1- Mock calls
         val query = ""
         runTest {
@@ -66,12 +67,45 @@ class DataRepositoryTest : BaseTestCase() {
     }
 
     @Test
-    fun `get trendy repo list with local success`() {
+    fun `get user success`() {
+        //1- Mock calls
+        val userName = ""
+        runTest {
+            val response = mockk<ApiResponse.Success<User>> {
+                every { data } returns mockk(relaxed = true)
+            }
+            val user = response.data
+
+            coEvery {
+                localData.insertUser(user)
+            } returns Unit
+
+            coEvery {
+                localData.getUser(userName)
+            } returns user
+
+            coEvery {
+                remoteData.getUser(
+                    userName
+                )
+            } returns response
+            //2-Call
+            dataRepository = DataRepository(remoteData, localData)
+            dataRepository.getGithubUser(userName, true)
+
+            //3-verify
+            coVerify { dataRepository.getGithubUser(userName, true) }
+
+        }
+    }
+
+    @Test
+    fun `get profile list with local success`() {
         //1- Mock calls
         val query = ""
         runTest {
             val response = mockk<ApiResponse.Success<GitUser>> {
-                every { data } returns mockk {
+                every { data } returns mockk(relaxed = true) {
                     every { repos } returns listOf(mockk(), mockk())
                 }
             }
@@ -91,6 +125,28 @@ class DataRepositoryTest : BaseTestCase() {
                     Assert.assertEquals(profiles, mockedCallResponse.data.repos)
                 }
             }
+        }
+    }
+
+    @Test
+    fun `get user with local success`() {
+        //1- Mock calls
+        val userName = ""
+        runTest {
+            val response = mockk<ApiResponse.Success<User>> {
+                every { data } returns mockk(relaxed = true)
+            }
+            val user = response.data
+
+            coEvery {
+                localData.getUser(userName)
+            } returns user
+
+            //2-Call
+            dataRepository = DataRepository(remoteData, localData)
+            dataRepository.getGithubUser(userName, false)
+
+            coVerify { dataRepository.getGithubUser(userName, false) }
         }
     }
 

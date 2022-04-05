@@ -1,11 +1,13 @@
 package com.task.githubprofile.ui.dashaboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import com.task.githubprofile.R
 import com.task.githubprofile.data.dtos.responsedtos.Profile
 import com.task.githubprofile.databinding.ActivityDashboardBinding
+import com.task.githubprofile.ui.detail.DetailActivity
 import com.task.githubprofile.utils.base.BaseActivity
 import com.task.githubprofile.utils.base.interfaces.OnItemClickListener
 import com.task.githubprofile.utils.base.sealed.UIEvent
@@ -34,6 +36,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, IDashboardVM>()
 
     private fun setUpRecyclerView() {
         viewModel.adaptor.onItemClickListener = rvItemClickListener
+        viewModel.adaptor.allowFullItemClickListener = true
         mViewBinding.recyclerView.adapter = viewModel.adaptor
     }
 
@@ -41,10 +44,16 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, IDashboardVM>()
         override fun onItemClick(view: View, data: Any, pos: Int) {
             when (data) {
                 is Profile -> {
-                    // handle later
+                    startDetailScreen(data)
                 }
             }
         }
+    }
+
+    private fun startDetailScreen(data: Profile) {
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra(DetailActivity::class.java.name, data.login)
+        startActivity(intent)
     }
 
     private fun handleRepoList(list: List<Profile>) {
@@ -54,7 +63,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, IDashboardVM>()
     }
 
     private fun setListener() {
-        mViewBinding.btnRetry.setOnClickListener(this)
+        mViewBinding.errorView.btnRetry.setOnClickListener(this)
         mViewBinding.tbView.setOnToolBarViewClickListener(this)
         mViewBinding.searchView.setOnToolBarViewClickListener(this)
         mViewBinding.swRefresh.setOnRefreshListener {
@@ -90,19 +99,19 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, IDashboardVM>()
     }
 
     private fun setErrorView() {
-        mViewBinding.errorView.visible()
+        mViewBinding.errorView.errorView.visible()
         mViewBinding.recyclerView.gone()
         hideShimmerLoading()
     }
 
     private fun setSuccessView() {
         mViewBinding.recyclerView.visible()
-        mViewBinding.errorView.gone()
+        mViewBinding.errorView.errorView.gone()
         hideShimmerLoading()
     }
 
     private fun setLoadingView() {
-        mViewBinding.errorView.gone()
+        mViewBinding.errorView.errorView.gone()
         mViewBinding.recyclerView.gone()
         showShimmerLoading()
     }

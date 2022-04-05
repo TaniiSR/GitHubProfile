@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.task.githubprofile.utils.uikit.toolbarview.ToolBarView
+        android:id="@+id/tbView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tbBottomLineVisibility="true"
+        app:tbStartIconDrawable="@drawable/ta_ic_back_arrow_left"
+        app:tbStartIconVisibility="true"
+        app:tbTitleText="@string/screen_detail_display_text_tb_title" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tbView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivImage"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="@dimen/ta_margin_normal"
+                        android:layout_marginTop="@dimen/ta_margin_normal"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearance="@style/shapeAppearance.App.CircleImageView.MediumComponent"
+                        app:strokeColor="@color/taBlack"
+                        app:strokeWidth="2dp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvName"
+                        style="@style/Trendy.Widget.TextView.BlackColor.XLarge"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ta_margin_small"
+                        android:autoSizeTextType="uniform"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:lineSpacingExtra="0dp"
+                        android:lines="1"
+                        app:layout_constraintEnd_toEndOf="@id/ivImage"
+                        app:layout_constraintStart_toStartOf="@id/ivImage"
+                        app:layout_constraintTop_toBottomOf="@id/ivImage"
+                        tools:text="Test ThermoState" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvEmail"
+                        style="@style/Trendy.Widget.TextView.BlackColor.Medium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ta_margin_small"
+                        android:autoSizeTextType="uniform"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:lineSpacingExtra="0dp"
+                        android:lines="1"
+                        app:layout_constraintEnd_toEndOf="@id/ivImage"
+                        app:layout_constraintStart_toStartOf="@id/ivImage"
+                        app:layout_constraintTop_toBottomOf="@id/tvName"
+                        tools:text="Email" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvDescription"
+                        style="@style/Trendy.Widget.TextView.BlackColor.Medium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/ta_margin_small"
+                        android:layout_marginTop="@dimen/ta_margin_small"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="start"
+                        android:lineSpacingExtra="1dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvEmail"
+                        tools:text="This is the detail page" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <include
+        android:id="@+id/shimmerLayout"
+        layout="@layout/layout_detail_shimmer_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tbView" />
+
+    <include
+        android:id="@+id/errorView"
+        layout="@layout/layout_error_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tbView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,15 +22,17 @@ import javax.inject.Inject
 class DashboardVM @Inject constructor(
     private val dataRepository: IDataRepository
 ) : BaseViewModel(), IDashboardVM {
-    private var _uiState: MutableLiveData<UIEvent> = MutableLiveData()
-    override var uiState: LiveData<UIEvent> = _uiState
+    private val _uiState: MutableLiveData<UIEvent> = MutableLiveData()
+    override val uiState: LiveData<UIEvent> = _uiState
 
     private val _repoLists: MutableLiveData<List<Profile>> = MutableLiveData()
-    override var repoLists: LiveData<List<Profile>> = _repoLists
+    override val repoLists: LiveData<List<Profile>> = _repoLists
 
     override var query: String = "q"
     override val adaptor: RepoListAdapter = RepoListAdapter(mutableListOf())
+
     private var job: Job? = null
+
     override fun fetchFreshData() {
         getTrendyGithubRepos(query = query, true)
     }
@@ -60,8 +62,8 @@ class DashboardVM @Inject constructor(
         override fun afterTextChanged(s: Editable?) {
             if (!s.isNullOrEmpty())
                 launch(Dispatcher.Main) {
+                    delay(600)
                     job?.cancel()
-                    delay(1000)
                     getTrendyGithubRepos(s.toString(), true)
                 }
         }

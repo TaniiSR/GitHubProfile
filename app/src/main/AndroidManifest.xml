@@ -28,6 +28,11 @@
             android:name="com.task.githubprofile.ui.dashaboard.DashboardActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.task.githubprofile.ui.detail.DetailActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
